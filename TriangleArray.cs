@@ -9,8 +9,8 @@ namespace Lab9Var4
         int sposob;
         Triangle[] arr;
         public int Length
-        { 
-        get { return arr.Length; }
+        {
+            get { return arr.Length; }
         }
         static Random rnd = new Random();
         public TriangleArray()
@@ -38,9 +38,9 @@ namespace Lab9Var4
                 if (sposob == 1)
                 {
                     Triangle r = new Triangle();
-                    r.a = Convert.ToDouble(rnd.Next(-10, 10));
-                    r.b = Convert.ToDouble(rnd.Next(-10, 10));
-                    r.c = Convert.ToDouble(rnd.Next(-10, 10));
+                    r.a = Convert.ToDouble(rnd.Next(0, 10));
+                    r.b = Convert.ToDouble(rnd.Next(0, 10));
+                    r.c = Convert.ToDouble(rnd.Next(0, 10));
                     if ((r.a + r.b < r.c) | (r.b + r.c < r.a) | (r.c + r.a < r.b))
                     {
                         r.Sq1 = 0;
@@ -75,7 +75,15 @@ namespace Lab9Var4
         public void ShowSquare()
         {
             foreach (Triangle t in arr)
-            Console.WriteLine($"Площадь равна {arr}");
+                Console.WriteLine($"Площадь равна {arr}");
+        }
+        public Triangle this[int index]
+        {
+            get { return arr[index]; }
+            set
+            {
+                arr[index] = value;
+            }
         }
 
     }

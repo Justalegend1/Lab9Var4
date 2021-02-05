@@ -6,6 +6,7 @@ namespace Lab9Var4
     {
         static void Main(string[] args)
         {
+            int sposob;
             double a;
             double b;
             double c;
@@ -118,49 +119,93 @@ namespace Lab9Var4
                         Console.WriteLine("Введите неотрицательное число");
                         o = Int32.TryParse(Console.ReadLine(), out size);
                     }
-                    double []Arr = new double[size];
-                    TriangleArray h = new TriangleArray();
-                    //TriangleArray Ar = new TriangleArray(size)
+                    double[] Arr = new double[size];
                     for (int j = 0; j < size; j++)
                     {
-                        Console.Write("A:");
-                        o = Double.TryParse(Console.ReadLine(), out a);
+                        Console.WriteLine("Выберите способ генерации сторон треугольника:\n1-Ручной ввод\n2-Случайные числа");
+                        o = Int32.TryParse(Console.ReadLine(), out sposob);
                         while (!o)
                         {
-                            Console.WriteLine("Введите число (если дробное, то используйте запятую)");
-                            o = Double.TryParse(Console.ReadLine(), out a);
+                            Console.WriteLine("Введите целое число");
+                            o = Int32.TryParse(Console.ReadLine(), out sposob);
                         }
-                        while (a < 0)
+                        while (sposob > 2 | sposob < 1)
                         {
-                            Console.WriteLine("Введите положительное число");
-                            o = Double.TryParse(Console.ReadLine(), out a);
+                            Console.WriteLine("Введите 1 или 2");
+                            o = Int32.TryParse(Console.ReadLine(), out sposob);
                         }
-                        Console.Write("B:");
-                        o = Double.TryParse(Console.ReadLine(), out b);
-                        while (!o)
+                        switch (sposob)
                         {
-                            Console.WriteLine("Введите число, (если дробное, то используйте запятую)");
-                            o = Double.TryParse(Console.ReadLine(), out b);
-                        }
-                        while (b < 0)
-                        {
-                            Console.WriteLine("Введите положительнео число");
-                            o = Double.TryParse(Console.ReadLine(), out b);
-                        }
-                        Console.Write("C:");
-                        o = Double.TryParse(Console.ReadLine(), out c);
-                        while (!o)
-                        {
-                            Console.WriteLine("Введите число, (если дробное, то используйте запятую)");
-                            o = Double.TryParse(Console.ReadLine(), out c);
-                        }
-                        while (c < 0)
-                        {
-                            Console.WriteLine("Введите положительное число");
-                            o = Double.TryParse(Console.ReadLine(), out c);
-                        }
-                        Triangle l = new Triangle();
-                        Arr[j] = l.ShowSquare2(a, b, c);
+                            case 1:
+                        { 
+                                Console.Write("A:");
+                                o = Double.TryParse(Console.ReadLine(), out a);
+                                while (!o)
+                                {
+                                    Console.WriteLine("Введите число (если дробное, то используйте запятую)");
+                                    o = Double.TryParse(Console.ReadLine(), out a);
+                                }
+                                while (a < 0)
+                                {
+                                    Console.WriteLine("Введите положительное число");
+                                    o = Double.TryParse(Console.ReadLine(), out a);
+                                }
+                                Console.Write("B:");
+                                o = Double.TryParse(Console.ReadLine(), out b);
+                                while (!o)
+                                {
+                                    Console.WriteLine("Введите число, (если дробное, то используйте запятую)");
+                                    o = Double.TryParse(Console.ReadLine(), out b);
+                                }
+                                while (b < 0)
+                                {
+                                    Console.WriteLine("Введите положительнео число");
+                                    o = Double.TryParse(Console.ReadLine(), out b);
+                                }
+                                Console.Write("C:");
+                                o = Double.TryParse(Console.ReadLine(), out c);
+                                while (!o)
+                                {
+                                    Console.WriteLine("Введите число, (если дробное, то используйте запятую)");
+                                    o = Double.TryParse(Console.ReadLine(), out c);
+                                }
+                                while (c < 0)
+                                {
+                                    Console.WriteLine("Введите положительное число");
+                                    o = Double.TryParse(Console.ReadLine(), out c);
+                                }
+                                Triangle w = new Triangle();
+                                    if ((a + b < c) | (b + c < a) | (c + a < b))
+                                    {
+                                        Console.WriteLine("Такого треугольника не существует, далее площадь будет равна 0");
+                                        Arr[j] = 0;
+                                    }
+                                    else
+                                    {
+                                        Arr[j] = w.ShowSquare2(a, b, c);
+                                    }
+                                }
+                                break;
+                            case 2:
+                                Random rnd = new Random();
+                                a = Convert.ToDouble(rnd.Next(0, 10));
+                                Console.WriteLine($"A:{a}");
+                                b = Convert.ToDouble(rnd.Next(0, 10));
+                                Console.WriteLine($"B:{b}");
+                                c = Convert.ToDouble(rnd.Next(0, 10));
+                                Console.WriteLine($"C:{c}");
+                                if ((a + b < c) | (b + c < a) | (c + a < b))
+                                {
+                                    Console.WriteLine("Такого треугольника не существует, далее площадь будет равна 0");
+                                    Arr[j] = 0;
+                                }
+                                else
+                                {
+                                    Triangle l = new Triangle();
+                                    Arr[j] = l.ShowSquare2(a, b, c);
+                                }
+                                break;
+                    }
                     }
                     double min = Double.MaxValue;
                     for (int u = 0; u < size; u++)

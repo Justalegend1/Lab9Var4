@@ -107,7 +107,7 @@ namespace Lab9Var4
             double Sq;
             double p;
             p = (a + b + c) / 2;
-            Sq = Math.Sqrt(p*(p - a)*(p - b)*(p - c));
+            Sq = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
             Console.WriteLine($"Площадь треугольника равна {Sq}");
             return Sq;
         }
@@ -125,7 +125,7 @@ namespace Lab9Var4
             t.c--;
             return t;
         }
-        public static explicit operator double (Triangle t)
+        public static explicit operator double(Triangle t)
         {
             return t.SQ1;
         }
@@ -137,7 +137,7 @@ namespace Lab9Var4
         {
             return t.Sq1 <= t1.Sq1;
         }
-        
-        
+
+
     }
 }
